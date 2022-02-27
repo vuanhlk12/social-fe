@@ -49,7 +49,7 @@ export default function Profile() {
                 className={style.profileUserImg}
                 src={
                   user.profilePicture
-                    ? user.profilePicture
+                    ? PF + user.profilePicture
                     : PF + "person/noAvatar.png"
                 }
                 alt=""

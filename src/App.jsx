@@ -11,27 +11,46 @@ import {
 } from "react-router-dom";
 import Messenger from "./pages/messenger/Messenger";
 
-function App() {
+const ProtectedRoute = (props) => {
+  const user = useSelector((state) => state?.auth?.user);
+  if (!user) {
+    localStorage.clear();
+    return <Redirect to="/login" />;
+  }
+  return <Route {...props} />;
+};
+
+const CheckSignedRoute = (props) => {
+  const user = useSelector((state) => state?.auth?.user);
+  if (user) {
+    return <Redirect to="/" />;
+  }
+  return <Route {...props} />;
+};
+
+const App = () => {
   const user = useSelector((state) => state?.auth?.user);
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
-          {user ? <Home /> : <Register />}
-        </Route>
-        <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
-        <Route path="/register">
-          {user ? <Redirect to="/" /> : <Register />}
-        </Route>
-        <Route path="/messenger">
-          {!user ? <Redirect to="/" /> : <Messenger />}
-        </Route>
-        <Route path="/profile/:username">
+        <CheckSignedRoute path="/login">
+          <Login />
+        </CheckSignedRoute>
+        <CheckSignedRoute path="/register">
+          <Register />
+        </CheckSignedRoute>
+        <ProtectedRoute exact path="/">
+          <Home />
+        </ProtectedRoute>
+        <ProtectedRoute path="/messenger">
+          <Messenger />
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile/:username">
           <Profile />
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </Router>
   );
-}
+};
 
 export default App;

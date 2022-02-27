@@ -10,6 +10,7 @@ import { useContext, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import config from "../../utils/config";
+import api from "../../utils/helper";
 
 export default function Share() {
   const user = useSelector((state) => state?.auth?.user);

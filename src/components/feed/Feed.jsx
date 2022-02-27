@@ -4,6 +4,8 @@ import Share from "../share/Share";
 import style from "./feed.module.scss";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import { Posts } from "../../dummyData";
+import api from "../../utils/helper";
 
 export default function Feed({ username }) {
   const [posts, setPosts] = useState([]);

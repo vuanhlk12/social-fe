@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRef } from "react";
 import style from "./register.module.scss";
 import { useHistory } from "react-router";
+import api from "../../utils/helper";
 
 export default function Register() {
   const username = useRef();

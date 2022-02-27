@@ -6,9 +6,10 @@ import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import config from "../../utils/config";
+import api from "../../utils/helper";
 
 export default function Post({ post }) {
-  const [like, setLike] = useState(post.likes.length);
+  const [like, setLike] = useState(post?.likes?.length || 0);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
   const PF = config.PUBLIC_FOLDER;
