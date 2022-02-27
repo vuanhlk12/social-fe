@@ -2,16 +2,16 @@ import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Feed from "../../components/feed/Feed";
 import Rightbar from "../../components/rightbar/Rightbar";
-import "./home.css"
+import style from "./home.module.scss";
 
 export default function Home() {
   return (
     <>
       <Topbar />
-      <div className="homeContainer">
+      <div className={style.homeContainer}>
         <Sidebar />
-        <Feed/>
-        <Rightbar/>
+        <Feed />
+        <Rightbar />
       </div>
     </>
   );

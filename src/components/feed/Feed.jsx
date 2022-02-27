@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Post from "../post/Post";
 import Share from "../share/Share";
-import "./feed.css";
+import style from "./feed.module.scss";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -29,8 +29,8 @@ export default function Feed({ username }) {
   }, [username, user._id]);
 
   return (
-    <div className="feed">
-      <div className="feedWrapper">
+    <div className={style.feed}>
+      <div className={style.feedWrapper}>
         {(!username || username === user.username) && <Share />}
         {posts.map((p) => (
           <Post key={p._id} post={p} />

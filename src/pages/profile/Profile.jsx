@@ -1,4 +1,4 @@
-import "./profile.css";
+import style from "./profile.module.scss";
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Feed from "../../components/feed/Feed";
@@ -11,10 +11,8 @@ import config from "../../utils/config";
 
 export default function Profile() {
   const PF = config.PUBLIC_FOLDER;
-  console.log("PF", PF, import.meta.env);
   const [user, setUser] = useState({});
   const params = useParams();
-  console.log("params", params);
   const username = params?.username;
 
   useEffect(() => {
@@ -33,13 +31,13 @@ export default function Profile() {
   return (
     <>
       <Topbar />
-      <div className="profile">
+      <div className={style.profile}>
         <Sidebar />
-        <div className="profileRight">
-          <div className="profileRightTop">
-            <div className="profileCover">
+        <div className={style.profileRight}>
+          <div className={style.profileRightTop}>
+            <div className={style.profileCover}>
               <img
-                className="profileCoverImg"
+                className={style.profileCoverImg}
                 src={
                   user.coverPicture
                     ? PF + user.coverPicture
@@ -48,7 +46,7 @@ export default function Profile() {
                 alt=""
               />
               <img
-                className="profileUserImg"
+                className={style.profileUserImg}
                 src={
                   user.profilePicture
                     ? user.profilePicture
@@ -57,12 +55,12 @@ export default function Profile() {
                 alt=""
               />
             </div>
-            <div className="profileInfo">
-              <h4 className="profileInfoName">{user.username}</h4>
-              <span className="profileInfoDesc">{user.desc}</span>
+            <div className={style.profileInfo}>
+              <h4 className={style.profileInfoName}>{user.username}</h4>
+              <span className={style.profileInfoDesc}>{user.desc}</span>
             </div>
           </div>
-          <div className="profileRightBottom">
+          <div className={style.profileRightBottom}>
             <Feed username={username} />
             <Rightbar user={user} />
           </div>

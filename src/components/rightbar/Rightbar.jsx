@@ -1,4 +1,4 @@
-import "./rightbar.css";
+import style from "./rightbar.module.scss";
 import { Users } from "../../dummyData";
 import Online from "../online/Online";
 import { useContext, useEffect, useState } from "react";
@@ -30,7 +30,7 @@ export default function Rightbar({ user }) {
         console.log(err);
       }
     };
-    getFriends();
+    !!user?._id && getFriends();
   }, [user]);
 
   const handleClick = async () => {
@@ -61,15 +61,15 @@ export default function Rightbar({ user }) {
   const HomeRightbar = () => {
     return (
       <>
-        <div className="birthdayContainer">
-          <img className="birthdayImg" src="assets/gift.png" alt="" />
-          <span className="birthdayText">
+        <div className={style.birthdayContainer}>
+          <img className={style.birthdayImg} src="assets/gift.png" alt="" />
+          <span className={style.birthdayText}>
             <b>Pola Foster</b> and <b>3 other friends</b> have a birhday today.
           </span>
         </div>
-        <img className="rightbarAd" src="assets/ad.png" alt="" />
-        <h4 className="rightbarTitle">Online Friends</h4>
-        <ul className="rightbarFriendList">
+        <img className={style.rightbarAd} src="assets/ad.png" alt="" />
+        <h4 className={style.rightbarTitle}>Online Friends</h4>
+        <ul className={style.rightbarFriendList}>
           {Users.map((u) => (
             <Online key={u.id} user={u} />
           ))}
@@ -82,24 +82,24 @@ export default function Rightbar({ user }) {
     return (
       <>
         {user.username !== currentUser.username && (
-          <button className="rightbarFollowButton" onClick={handleClick}>
+          <button className={style.rightbarFollowButton} onClick={handleClick}>
             {followed ? "Unfollow" : "Follow"}
             {followed ? <Remove /> : <Add />}
           </button>
         )}
-        <h4 className="rightbarTitle">User information</h4>
-        <div className="rightbarInfo">
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">City:</span>
-            <span className="rightbarInfoValue">{user.city}</span>
+        <h4 className={style.rightbarTitle}>User information</h4>
+        <div className={style.rightbarInfo}>
+          <div className={style.rightbarInfoItem}>
+            <span className={style.rightbarInfoKey}>City:</span>
+            <span className={style.rightbarInfoValue}>{user.city}</span>
           </div>
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">From:</span>
-            <span className="rightbarInfoValue">{user.from}</span>
+          <div className={style.rightbarInfoItem}>
+            <span className={style.rightbarInfoKey}>From:</span>
+            <span className={style.rightbarInfoValue}>{user.from}</span>
           </div>
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">Relationship:</span>
-            <span className="rightbarInfoValue">
+          <div className={style.rightbarInfoItem}>
+            <span className={style.rightbarInfoKey}>Relationship:</span>
+            <span className={style.rightbarInfoValue}>
               {user.relationship === 1
                 ? "Single"
                 : user.relationship === 1
@@ -108,14 +108,14 @@ export default function Rightbar({ user }) {
             </span>
           </div>
         </div>
-        <h4 className="rightbarTitle">User friends</h4>
-        <div className="rightbarFollowings">
+        <h4 className={style.rightbarTitle}>User friends</h4>
+        <div className={style.rightbarFollowings}>
           {friends.map((friend) => (
             <Link
               to={"/profile/" + friend.username}
               style={{ textDecoration: "none" }}
             >
-              <div className="rightbarFollowing">
+              <div className={style.rightbarFollowing}>
                 <img
                   src={
                     friend.profilePicture
@@ -123,9 +123,11 @@ export default function Rightbar({ user }) {
                       : PF + "person/noAvatar.png"
                   }
                   alt=""
-                  className="rightbarFollowingImg"
+                  className={style.rightbarFollowingImg}
                 />
-                <span className="rightbarFollowingName">{friend.username}</span>
+                <span className={style.rightbarFollowingName}>
+                  {friend.username}
+                </span>
               </div>
             </Link>
           ))}
@@ -134,8 +136,8 @@ export default function Rightbar({ user }) {
     );
   };
   return (
-    <div className="rightbar">
-      <div className="rightbarWrapper">
+    <div className={style.rightbar}>
+      <div className={style.rightbarWrapper}>
         {user ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>

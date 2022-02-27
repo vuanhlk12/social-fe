@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import config from "../../utils/config";
-import "./conversation.css";
+import style from "./conversation.module.scss";
 
 export default function Conversation({ conversation, currentUser }) {
   const [user, setUser] = useState(null);
@@ -22,9 +22,9 @@ export default function Conversation({ conversation, currentUser }) {
   }, [currentUser, conversation]);
 
   return (
-    <div className="conversation">
+    <div className={style.conversation}>
       <img
-        className="conversationImg"
+        className={style.conversationImg}
         src={
           user?.profilePicture
             ? PF + user.profilePicture
@@ -32,7 +32,7 @@ export default function Conversation({ conversation, currentUser }) {
         }
         alt=""
       />
-      <span className="conversationName">{user?.username}</span>
+      <span className={style.conversationName}>{user?.username}</span>
     </div>
   );
 }

@@ -9,7 +9,6 @@ export const loginCall = async (userCredential, dispatch) => {
       url: "/auth/login",
       data: userCredential,
     });
-    console.log(res.data);
     dispatch({ type: authActionType.LOGIN_SUCCESS, payload: res.data });
   } catch (err) {
     dispatch({ type: authActionType.LOGIN_FAILURE, payload: err });

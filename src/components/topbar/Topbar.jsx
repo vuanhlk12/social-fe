@@ -1,4 +1,4 @@
-import "./topbar.css";
+import style from "./topbar.module.scss";
 import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -7,42 +7,41 @@ import config from "../../utils/config";
 
 export default function Topbar() {
   const user = useSelector((state) => state?.auth?.user);
-  console.log("user", user);
   if (!user) return <></>;
   const PF = config.PUBLIC_FOLDER;
   return (
-    <div className="topbarContainer">
-      <div className="topbarLeft">
+    <div className={style.topbarContainer}>
+      <div className={style.topbarLeft}>
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Lamasocial</span>
+          <span className={style.logo}>Lamasocial</span>
         </Link>
       </div>
-      <div className="topbarCenter">
-        <div className="searchbar">
-          <Search className="searchIcon" />
+      <div className={style.topbarCenter}>
+        <div className={style.searchbar}>
+          <Search className={style.searchIcon} />
           <input
             placeholder="Search for friend, post or video"
-            className="searchInput"
+            className={style.searchInput}
           />
         </div>
       </div>
-      <div className="topbarRight">
-        <div className="topbarLinks">
-          <span className="topbarLink">Homepage</span>
-          <span className="topbarLink">Timeline</span>
+      <div className={style.topbarRight}>
+        <div className={style.topbarLinks}>
+          <span className={style.topbarLink}>Homepage</span>
+          <span className={style.topbarLink}>Timeline</span>
         </div>
-        <div className="topbarIcons">
-          <div className="topbarIconItem">
+        <div className={style.topbarIcons}>
+          <div className={style.topbarIconItem}>
             <Person />
-            <span className="topbarIconBadge">1</span>
+            <span className={style.topbarIconBadge}>1</span>
           </div>
-          <div className="topbarIconItem">
+          <div className={style.topbarIconItem}>
             <Chat />
-            <span className="topbarIconBadge">2</span>
+            <span className={style.topbarIconBadge}>2</span>
           </div>
-          <div className="topbarIconItem">
+          <div className={style.topbarIconItem}>
             <Notifications />
-            <span className="topbarIconBadge">1</span>
+            <span className={style.topbarIconBadge}>1</span>
           </div>
         </div>
         <Link to={`/profile/${user.username}`}>
@@ -53,7 +52,7 @@ export default function Topbar() {
                 : PF + "person/noAvatar.png"
             }
             alt=""
-            className="topbarImg"
+            className={style.topbarImg}
           />
         </Link>
       </div>

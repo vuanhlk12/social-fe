@@ -1,20 +1,20 @@
 import config from "../../utils/config";
-import "./online.css";
+import style from "./online.module.scss";
 
 export default function Online({ user }) {
   const PF = config.PUBLIC_FOLDER;
 
   return (
-    <li className="rightbarFriend">
-      <div className="rightbarProfileImgContainer">
+    <li className={style.rightbarFriend}>
+      <div className={style.rightbarProfileImgContainer}>
         <img
-          className="rightbarProfileImg"
+          className={style.rightbarProfileImg}
           src={PF + user.profilePicture}
           alt=""
         />
-        <span className="rightbarOnline"></span>
+        <span className={style.rightbarOnline}></span>
       </div>
-      <span className="rightbarUsername">{user.username}</span>
+      <span className={style.rightbarUsername}>{user.username}</span>
     </li>
   );
 }

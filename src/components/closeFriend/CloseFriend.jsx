@@ -1,12 +1,16 @@
 import config from "../../utils/config";
-import "./closeFriend.css";
+import style from "./closeFriend.module.scss";
 
 export default function CloseFriend({ user }) {
   const PF = config.PUBLIC_FOLDER;
   return (
-    <li className="sidebarFriend">
-      <img className="sidebarFriendImg" src={PF + user.profilePicture} alt="" />
-      <span className="sidebarFriendName">{user.username}</span>
+    <li className={style.sidebarFriend}>
+      <img
+        className={style.sidebarFriendImg}
+        src={PF + user.profilePicture}
+        alt=""
+      />
+      <span className={style.sidebarFriendName}>{user.username}</span>
     </li>
   );
 }

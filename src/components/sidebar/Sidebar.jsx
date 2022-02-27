@@ -1,4 +1,4 @@
-import "./sidebar.css";
+import style from "./sidebar.module.scss";
 import {
   RssFeed,
   Chat,
@@ -15,49 +15,49 @@ import CloseFriend from "../closeFriend/CloseFriend";
 
 export default function Sidebar() {
   return (
-    <div className="sidebar">
-      <div className="sidebarWrapper">
-        <ul className="sidebarList">
-          <li className="sidebarListItem">
-            <RssFeed className="sidebarIcon" />
-            <span className="sidebarListItemText">Feed</span>
+    <div className={style.sidebar}>
+      <div className={style.sidebarWrapper}>
+        <ul className={style.sidebarList}>
+          <li className={style.sidebarListItem}>
+            <RssFeed className={style.sidebarIcon} />
+            <span className={style.sidebarListItemText}>Feed</span>
           </li>
-          <li className="sidebarListItem">
-            <Chat className="sidebarIcon" />
-            <span className="sidebarListItemText">Chats</span>
+          <li className={style.sidebarListItem}>
+            <Chat className={style.sidebarIcon} />
+            <span className={style.sidebarListItemText}>Chats</span>
           </li>
-          <li className="sidebarListItem">
-            <PlayCircleFilledOutlined className="sidebarIcon" />
-            <span className="sidebarListItemText">Videos</span>
+          <li className={style.sidebarListItem}>
+            <PlayCircleFilledOutlined className={style.sidebarIcon} />
+            <span className={style.sidebarListItemText}>Videos</span>
           </li>
-          <li className="sidebarListItem">
-            <Group className="sidebarIcon" />
-            <span className="sidebarListItemText">Groups</span>
+          <li className={style.sidebarListItem}>
+            <Group className={style.sidebarIcon} />
+            <span className={style.sidebarListItemText}>Groups</span>
           </li>
-          <li className="sidebarListItem">
-            <Bookmark className="sidebarIcon" />
-            <span className="sidebarListItemText">Bookmarks</span>
+          <li className={style.sidebarListItem}>
+            <Bookmark className={style.sidebarIcon} />
+            <span className={style.sidebarListItemText}>Bookmarks</span>
           </li>
-          <li className="sidebarListItem">
-            <HelpOutline className="sidebarIcon" />
-            <span className="sidebarListItemText">Questions</span>
+          <li className={style.sidebarListItem}>
+            <HelpOutline className={style.sidebarIcon} />
+            <span className={style.sidebarListItemText}>Questions</span>
           </li>
-          <li className="sidebarListItem">
-            <WorkOutline className="sidebarIcon" />
-            <span className="sidebarListItemText">Jobs</span>
+          <li className={style.sidebarListItem}>
+            <WorkOutline className={style.sidebarIcon} />
+            <span className={style.sidebarListItemText}>Jobs</span>
           </li>
-          <li className="sidebarListItem">
-            <Event className="sidebarIcon" />
-            <span className="sidebarListItemText">Events</span>
+          <li className={style.sidebarListItem}>
+            <Event className={style.sidebarIcon} />
+            <span className={style.sidebarListItemText}>Events</span>
           </li>
-          <li className="sidebarListItem">
-            <School className="sidebarIcon" />
-            <span className="sidebarListItemText">Courses</span>
+          <li className={style.sidebarListItem}>
+            <School className={style.sidebarIcon} />
+            <span className={style.sidebarListItemText}>Courses</span>
           </li>
         </ul>
-        <button className="sidebarButton">Show More</button>
-        <hr className="sidebarHr" />
-        <ul className="sidebarFriendList">
+        <button className={style.sidebarButton}>Show More</button>
+        <hr className={style.sidebarHr} />
+        <ul className={style.sidebarFriendList}>
           {Users.map((u) => (
             <CloseFriend key={u.id} user={u} />
           ))}

@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import config from "../../utils/config";
 import api from "../../utils/helper";
-import "./chatOnline.css";
+import style from "./chatOnline.module.scss";
 
 export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   const [friends, setFriends] = useState([]);
@@ -37,12 +38,12 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   };
 
   return (
-    <div className="chatOnline">
+    <div className={style.chatOnline}>
       {onlineFriends.map((o) => (
-        <div className="chatOnlineFriend" onClick={() => handleClick(o)}>
-          <div className="chatOnlineImgContainer">
+        <div className={style.chatOnlineFriend} onClick={() => handleClick(o)}>
+          <div className={style.chatOnlineImgContainer}>
             <img
-              className="chatOnlineImg"
+              className={style.chatOnlineImg}
               src={
                 o?.profilePicture
                   ? PF + o.profilePicture
@@ -50,9 +51,9 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
               }
               alt=""
             />
-            <div className="chatOnlineBadge"></div>
+            <div className={style.chatOnlineBadge}></div>
           </div>
-          <span className="chatOnlineName">{o?.username}</span>
+          <span className={style.chatOnlineName}>{o?.username}</span>
         </div>
       ))}
     </div>
