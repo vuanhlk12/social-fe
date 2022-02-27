@@ -6,7 +6,7 @@ import "./chatOnline.css";
 export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   const [friends, setFriends] = useState([]);
   const [onlineFriends, setOnlineFriends] = useState([]);
-  const PF = import.meta.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = config.PUBLIC_FOLDER;
 
   useEffect(() => {
     const getFriends = async () => {

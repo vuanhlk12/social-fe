@@ -9,10 +9,11 @@ import {
 import { useContext, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import config from "../../utils/config";
 
 export default function Share() {
   const user = useSelector((state) => state?.auth?.user);
-  const PF = import.meta.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = config.PUBLIC_FOLDER;
   const desc = useRef();
   const [file, setFile] = useState(null);
 

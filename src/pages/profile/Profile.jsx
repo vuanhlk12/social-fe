@@ -7,9 +7,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import api from "../../utils/helper";
+import config from "../../utils/config";
 
 export default function Profile() {
-  const PF = import.meta.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = config.PUBLIC_FOLDER;
+  console.log("PF", PF, import.meta.env);
   const [user, setUser] = useState({});
   const params = useParams();
   console.log("params", params);
@@ -49,7 +51,7 @@ export default function Profile() {
                 className="profileUserImg"
                 src={
                   user.profilePicture
-                    ? PF + user.profilePicture
+                    ? user.profilePicture
                     : PF + "person/noAvatar.png"
                 }
                 alt=""

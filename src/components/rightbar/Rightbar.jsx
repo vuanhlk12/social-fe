@@ -6,9 +6,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Add, Remove } from "@material-ui/icons";
+import api from "../../utils/helper";
+import config from "../../utils/config";
 
 export default function Rightbar({ user }) {
-  const PF = import.meta.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = config.PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
   const currentUser = useSelector((state) => state?.auth?.user);
   const dispatch = useDispatch();

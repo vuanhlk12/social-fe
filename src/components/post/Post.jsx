@@ -5,12 +5,13 @@ import axios from "axios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import config from "../../utils/config";
 
 export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
-  const PF = import.meta.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = config.PUBLIC_FOLDER;
   const currentUser = useSelector((state) => state?.auth?.user);
 
   useEffect(() => {

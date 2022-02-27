@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import config from "../../utils/config";
 import "./conversation.css";
 
 export default function Conversation({ conversation, currentUser }) {
   const [user, setUser] = useState(null);
-  const PF = import.meta.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = config.PUBLIC_FOLDER;
 
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser._id);

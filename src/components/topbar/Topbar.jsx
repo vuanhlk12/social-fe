@@ -3,12 +3,13 @@ import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import config from "../../utils/config";
 
 export default function Topbar() {
   const user = useSelector((state) => state?.auth?.user);
   console.log("user", user);
   if (!user) return <></>;
-  const PF = import.meta.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = config.PUBLIC_FOLDER;
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
