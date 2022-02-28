@@ -24,9 +24,9 @@ export default function Login() {
     <div className={style.login}>
       <div className={style.loginWrapper}>
         <div className={style.loginLeft}>
-          <h3 className={style.loginLogo}>Lamasocial</h3>
+          <h3 className={style.loginLogo}>Vuanhbook</h3>
           <span className={style.loginDesc}>
-            Connect with friends and the world around you on Lamasocial.
+            Connect with friends and the world around you on Vuanhbook.
           </span>
         </div>
         <div className={style.loginRight}>
