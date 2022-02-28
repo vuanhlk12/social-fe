@@ -12,6 +12,7 @@ import axios from "axios";
 import config from "../../utils/config";
 import api from "../../utils/helper";
 import { imgUrl } from "../../utils/constant";
+import { handleUpload } from "../../utils/common";
 
 export default function Share() {
   const user = useSelector((state) => state?.auth?.user);
@@ -25,23 +26,13 @@ export default function Share() {
       userId: user._id,
       desc: desc.current.value,
     };
+
     if (file) {
-      const data = new FormData();
-      const fileName = Date.now() + file.name;
-      data.append("name", fileName);
-      data.append("file", file);
-      newPost.img = fileName;
-      console.log(newPost);
-      try {
-        await api({
-          method: "post",
-          url: `/upload`,
-          data,
-        });
-      } catch (err) {}
+      const imgUrl = await handleUpload(file, user?._id);
+      newPost.img = imgUrl;
     }
     try {
-      await api({
+      const res = await api({
         method: "post",
         url: `/posts`,
         data: newPost,
@@ -56,7 +47,7 @@ export default function Share() {
         <div className={style.shareTo}>
           <img
             className={style.shareProfileImg}
-            src={user.profilePicture ?  user.profilePicture : imgUrl.noAvtUrl}
+            src={user.profilePicture ? user.profilePicture : imgUrl.noAvtUrl}
             alt=""
           />
           <input
