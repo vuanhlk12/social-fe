@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import config from "../../utils/config";
+import { imgUrl } from "../../utils/constant";
 import api from "../../utils/helper";
 import style from "./chatOnline.module.scss";
 
@@ -44,11 +45,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
           <div className={style.chatOnlineImgContainer}>
             <img
               className={style.chatOnlineImg}
-              src={
-                o?.profilePicture
-                  ? PF + o.profilePicture
-                  : PF + "person/noAvatar.png"
-              }
+              src={o?.profilePicture ?  o.profilePicture : imgUrl.noAvtUrl}
               alt=""
             />
             <div className={style.chatOnlineBadge}></div>

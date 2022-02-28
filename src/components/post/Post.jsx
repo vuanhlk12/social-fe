@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import config from "../../utils/config";
 import api from "../../utils/helper";
+import { imgUrl } from "../../utils/constant";
 
 export default function Post({ post }) {
   const [like, setLike] = useState(post?.likes?.length || 0);
@@ -51,8 +52,8 @@ export default function Post({ post }) {
                 className={style.postProfileImg}
                 src={
                   user.profilePicture
-                    ? PF + user.profilePicture
-                    : PF + "person/noAvatar.png"
+                    ?  user.profilePicture
+                    : imgUrl.noAvtUrl
                 }
                 alt=""
               />
@@ -66,19 +67,19 @@ export default function Post({ post }) {
         </div>
         <div className={style.postCenter}>
           <span className={style.postText}>{post?.desc}</span>
-          <img className={style.postImg} src={PF + post.img} alt="" />
+          <img className={style.postImg} src={ post.img} alt="" />
         </div>
         <div className={style.postBottom}>
           <div className={style.postBottomLeft}>
             <img
               className={style.likeIcon}
-              src={`${PF}like.png`}
+              src={imgUrl.likeUrl}
               onClick={likeHandler}
               alt=""
             />
             <img
               className={style.likeIcon}
-              src={`${PF}heart.png`}
+              src={imgUrl.heartUrl}
               onClick={likeHandler}
               alt=""
             />

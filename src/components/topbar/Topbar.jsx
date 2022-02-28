@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import config from "../../utils/config";
+import { imgUrl } from "../../utils/constant";
 
 export default function Topbar() {
   const user = useSelector((state) => state?.auth?.user);
@@ -46,11 +47,7 @@ export default function Topbar() {
         </div>
         <Link to={`/profile/${user.username}`}>
           <img
-            src={
-              user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"
-            }
+            src={user.profilePicture ?  user.profilePicture : imgUrl.noAvtUrl}
             alt=""
             className={style.topbarImg}
           />

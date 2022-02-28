@@ -9,7 +9,7 @@ export default function Online({ user }) {
       <div className={style.rightbarProfileImgContainer}>
         <img
           className={style.rightbarProfileImg}
-          src={PF + user.profilePicture}
+          src={ user.profilePicture}
           alt=""
         />
         <span className={style.rightbarOnline}></span>

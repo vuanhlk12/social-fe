@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import config from "../../utils/config";
 import api from "../../utils/helper";
+import { imgUrl } from "../../utils/constant";
 
 export default function Share() {
   const user = useSelector((state) => state?.auth?.user);
@@ -55,11 +56,7 @@ export default function Share() {
         <div className={style.shareTo}>
           <img
             className={style.shareProfileImg}
-            src={
-              user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"
-            }
+            src={user.profilePicture ?  user.profilePicture : imgUrl.noAvtUrl}
             alt=""
           />
           <input

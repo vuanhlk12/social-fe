@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import config from "../../utils/config";
+import { imgUrl } from "../../utils/constant";
 import style from "./conversation.module.scss";
 
 export default function Conversation({ conversation, currentUser }) {
@@ -25,11 +26,7 @@ export default function Conversation({ conversation, currentUser }) {
     <div className={style.conversation}>
       <img
         className={style.conversationImg}
-        src={
-          user?.profilePicture
-            ? PF + user.profilePicture
-            : PF + "person/noAvatar.png"
-        }
+        src={user?.profilePicture ?  user.profilePicture : imgUrl.noAvtUrl}
         alt=""
       />
       <span className={style.conversationName}>{user?.username}</span>

@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Add, Remove } from "@material-ui/icons";
 import api from "../../utils/helper";
 import config from "../../utils/config";
+import { imgUrl } from "../../utils/constant";
 
 export default function Rightbar({ user }) {
   const PF = config.PUBLIC_FOLDER;
@@ -119,8 +120,8 @@ export default function Rightbar({ user }) {
                 <img
                   src={
                     friend.profilePicture
-                      ? PF + friend.profilePicture
-                      : PF + "person/noAvatar.png"
+                      ?  friend.profilePicture
+                      : imgUrl.noAvtUrl
                   }
                   alt=""
                   className={style.rightbarFollowingImg}

@@ -6,27 +6,36 @@ import Rightbar from "../../components/rightbar/Rightbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import api from "../../utils/helper";
 import config from "../../utils/config";
+import { imgUrl } from "../../utils/constant";
+import { handleUpload } from "../../utils/common";
+import { storage } from "../../utils/firebase";
+import { getUser, updateUser } from "../../utils/action";
 
 export default function Profile() {
-  const PF = config.PUBLIC_FOLDER;
   const [user, setUser] = useState({});
   const params = useParams();
   const username = params?.username;
 
+  const fetchUser = async () => {
+    const res = await getUser(username);
+    setUser(res.data);
+  };
+
+  const handleUploadFile = async (e) => {
+    const { files } = e.target;
+    const imgUrl = await handleUpload(files[0], user?._id);
+    const res = await updateUser(user?._id, {
+      profilePicture: imgUrl,
+      userId: user?._id,
+    });
+    fetchUser();
+    console.log("res", res);
+  };
+
   useEffect(() => {
-    const fetchUser = async () => {
-      const res = await api({
-        method: "get",
-        url: `/users?username=${username}`,
-      });
-      setUser(res.data);
-    };
     fetchUser();
   }, [username]);
-
-  //return <></>;
 
   return (
     <>
@@ -38,21 +47,20 @@ export default function Profile() {
             <div className={style.profileCover}>
               <img
                 className={style.profileCoverImg}
-                src={
-                  user.coverPicture
-                    ? PF + user.coverPicture
-                    : PF + "person/noCover.png"
-                }
+                src={user.coverPicture ?? "person/noCover.png"}
                 alt=""
               />
               <img
                 className={style.profileUserImg}
-                src={
-                  user.profilePicture
-                    ? PF + user.profilePicture
-                    : PF + "person/noAvatar.png"
-                }
+                src={user.profilePicture ?? imgUrl.noAvtUrl}
                 alt=""
+              />
+              <input
+                type="file"
+                id="upload"
+                accept="image/png, image/gif, image/jpeg"
+                multiple={false}
+                onChange={handleUploadFile}
               />
             </div>
             <div className={style.profileInfo}>
