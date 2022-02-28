@@ -7,6 +7,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { io } from "socket.io-client";
+import api from "../../utils/helper";
 
 export default function Messenger() {
   const [conversations, setConversations] = useState([]);
@@ -49,7 +50,10 @@ export default function Messenger() {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get("/conversations/" + user._id);
+        const res = await api({
+          method: "get",
+          url: "/conversations/" + user._id,
+        });
         setConversations(res.data);
       } catch (err) {
         console.log(err);
@@ -61,13 +65,16 @@ export default function Messenger() {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await axios.get("/messages/" + currentChat?._id);
+        const res = await api({
+          method: "get",
+          url: "/messages/" + currentChat?._id,
+        });
         setMessages(res.data);
       } catch (err) {
         console.log(err);
       }
     };
-    getMessages();
+    !!currentChat?._id && getMessages();
   }, [currentChat]);
 
   const handleSubmit = async (e) => {
@@ -89,7 +96,11 @@ export default function Messenger() {
     });
 
     try {
-      const res = await axios.post("/messages", message);
+      const res = await api({
+        method: "post",
+        url: "/messages",
+        data: message,
+      });
       setMessages([...messages, res.data]);
       setNewMessage("");
     } catch (err) {
