@@ -3,6 +3,8 @@ import Qs from "qs";
 import cookie from "js-cookie";
 import config from "./config";
 
+const user = JSON.parse(localStorage.getItem("user")) || null;
+
 const request = axios.create();
 
 request.interceptors.request.use(
@@ -29,6 +31,7 @@ const api = (options = {}) => {
     paramsSerializer: (params) =>
       Qs.stringify(params, { arrayFormat: "repeat" }),
     headers: {
+      token: "Bearer " + user?.accessToken,
       ...options.headers,
     },
   });
