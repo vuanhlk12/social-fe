@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import api from "utils/helper";
 import config from "../../utils/config";
 import { imgUrl } from "../../utils/constant";
 import style from "./conversation.module.scss";
@@ -13,7 +14,10 @@ export default function Conversation({ conversation, currentUser }) {
 
     const getUser = async () => {
       try {
-        const res = await axios("/users?userId=" + friendId);
+        const res = await api({
+          method: "get",
+          url: "/users?userId=" + friendId,
+        });
         setUser(res.data);
       } catch (err) {
         console.log(err);
@@ -26,7 +30,7 @@ export default function Conversation({ conversation, currentUser }) {
     <div className={style.conversation}>
       <img
         className={style.conversationImg}
-        src={user?.profilePicture ?  user.profilePicture : imgUrl.noAvtUrl}
+        src={user?.profilePicture ? user.profilePicture : imgUrl.noAvtUrl}
         alt=""
       />
       <span className={style.conversationName}>{user?.username}</span>
