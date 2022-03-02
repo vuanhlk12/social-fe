@@ -2,6 +2,7 @@ import style from "./message.module.scss";
 import { format } from "timeago.js";
 import clsx from "clsx";
 
+
 export default function Message({ message, own }) {
   return (
     <div className={clsx(style.message, own && style.own)}>
