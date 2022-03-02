@@ -1,6 +1,6 @@
 import style from "./topbar.module.scss";
 import { Search, Person, Chat, Notifications } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import config from "../../utils/config";
@@ -8,8 +8,9 @@ import { imgUrl } from "../../utils/constant";
 
 export default function Topbar() {
   const user = useSelector((state) => state?.auth?.user);
+  const history = useHistory();
   if (!user) return <></>;
-  const PF = config.PUBLIC_FOLDER;
+
   return (
     <div className={style.topbarContainer}>
       <div className={style.topbarLeft}>
@@ -36,7 +37,10 @@ export default function Topbar() {
             <Person />
             <span className={style.topbarIconBadge}>1</span>
           </div>
-          <div className={style.topbarIconItem}>
+          <div
+            className={style.topbarIconItem}
+            onClick={() => history.push("/messenger")}
+          >
             <Chat />
             <span className={style.topbarIconBadge}>2</span>
           </div>
@@ -47,7 +51,7 @@ export default function Topbar() {
         </div>
         <Link to={`/profile/${user.username}`}>
           <img
-            src={user.profilePicture ?  user.profilePicture : imgUrl.noAvtUrl}
+            src={user.profilePicture ? user.profilePicture : imgUrl.noAvtUrl}
             alt=""
             className={style.topbarImg}
           />

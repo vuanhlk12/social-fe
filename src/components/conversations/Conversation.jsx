@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import config from "utils/config";
 import api from "utils/helper";
-import config from "../../utils/config";
-import { imgUrl } from "../../utils/constant";
+import { imgUrl } from "utils/constant";
 import style from "./conversation.module.scss";
 
 export default function Conversation({ conversation, currentUser }) {
