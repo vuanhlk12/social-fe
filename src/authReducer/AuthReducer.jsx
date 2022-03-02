@@ -37,6 +37,15 @@ const authReducer = (state = initialState, action) => {
           (following) => following !== action.payload
         );
       });
+    case authActionType.UPDATE_USER:
+      return produce(state, (draft) => {
+        const newUserData = { ...draft.user, ...action.payload };
+        localStorage.setItem("user", JSON.stringify(newUserData));
+        return produce(state, (draft) => {
+          draft.user = newUserData;
+          draft.isFetching = false;
+        });
+      });
     default:
       return state;
   }

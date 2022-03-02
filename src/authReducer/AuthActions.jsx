@@ -4,6 +4,7 @@ export const authActionType = {
   LOGIN_FAILURE: "LOGIN_FAILURE",
   FOLLOW: "FOLLOW",
   UNFOLLOW: "UNFOLLOW",
+  UPDATE_USER: "UPDATE_USER",
 };
 
 export const LoginStart = (userCredentials) => ({

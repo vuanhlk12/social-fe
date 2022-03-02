@@ -3,7 +3,7 @@ import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Feed from "../../components/feed/Feed";
 import Rightbar from "../../components/rightbar/Rightbar";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import config from "../../utils/config";
@@ -11,11 +11,19 @@ import { imgUrl } from "../../utils/constant";
 import { handleUpload } from "../../utils/common";
 import { storage } from "../../utils/firebase";
 import { getUser, updateUser } from "../../utils/action";
+import { useDispatch, useSelector } from "react-redux";
+import { authActionType } from "../../authReducer/AuthActions";
 
 export default function Profile() {
-  const [user, setUser] = useState({});
   const params = useParams();
-  const username = params?.username;
+  const { username } = params;
+  const currentUser = useSelector((state) => state?.auth?.user);
+  const dispatch = useDispatch();
+
+  const isCurrentUser = username === currentUser?.username;
+
+  const [user, setUser] = useState(isCurrentUser ? currentUser : {});
+  const fileUploadRef = useRef();
 
   const fetchUser = async () => {
     const res = await getUser(username);
@@ -29,13 +37,20 @@ export default function Profile() {
       profilePicture: imgUrl,
       userId: user?._id,
     });
-    fetchUser();
-    console.log("res", res);
+    const temp = dispatch({
+      type: authActionType.UPDATE_USER,
+      payload: res?.data,
+    });
+    console.log("temp", temp);
   };
 
   useEffect(() => {
-    fetchUser();
+    !isCurrentUser && fetchUser();
   }, [username]);
+
+  useEffect(() => {
+    isCurrentUser && setUser(currentUser);
+  }, [currentUser]);
 
   return (
     <>
@@ -54,14 +69,19 @@ export default function Profile() {
                 className={style.profileUserImg}
                 src={user.profilePicture ?? imgUrl.noAvtUrl}
                 alt=""
+                onClick={() => fileUploadRef.current?.click()}
               />
-              <input
-                type="file"
-                id="upload"
-                accept="image/png, image/gif, image/jpeg"
-                multiple={false}
-                onChange={handleUploadFile}
-              />
+              {isCurrentUser && (
+                <input
+                  style={{ display: "none" }}
+                  type="file"
+                  id="upload"
+                  accept="image/png, image/gif, image/jpeg"
+                  multiple={false}
+                  onChange={handleUploadFile}
+                  ref={fileUploadRef}
+                />
+              )}
             </div>
             <div className={style.profileInfo}>
               <h4 className={style.profileInfoName}>{user.username}</h4>
