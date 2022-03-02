@@ -1,9 +1,10 @@
 import style from "./message.module.scss";
 import { format } from "timeago.js";
+import clsx from "clsx";
 
 export default function Message({ message, own }) {
   return (
-    <div className={own ? "message own" : "message"}>
+    <div className={clsx(style.message, own && style.own)}>
       <div className={style.messageTop}>
         <img
           className={style.messageImg}

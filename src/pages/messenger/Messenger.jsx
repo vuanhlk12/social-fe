@@ -89,11 +89,11 @@ export default function Messenger() {
       (member) => member !== user._id
     );
 
-    socket.current.emit("sendMessage", {
-      senderId: user._id,
-      receiverId,
-      text: newMessage,
-    });
+    // socket.current.emit("sendMessage", {
+    //   senderId: user._id,
+    //   receiverId,
+    //   text: newMessage,
+    // });
 
     try {
       const res = await api({
@@ -123,7 +123,7 @@ export default function Messenger() {
               className={style.chatMenuInput}
             />
             {conversations.map((c) => (
-              <div onClick={() => setCurrentChat(c)}>
+              <div onClick={() => setCurrentChat(c)} key={c?._id}>
                 <Conversation conversation={c} currentUser={user} />
               </div>
             ))}
@@ -135,7 +135,7 @@ export default function Messenger() {
               <>
                 <div className={style.chatBoxTop}>
                   {messages.map((m) => (
-                    <div ref={scrollRef}>
+                    <div ref={scrollRef} key={m?._id}>
                       <Message message={m} own={m.sender === user._id} />
                     </div>
                   ))}
