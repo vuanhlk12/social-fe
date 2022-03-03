@@ -6,9 +6,8 @@ import {
   EmojiEmotions,
   Cancel,
 } from "@material-ui/icons";
-import { useContext, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
+import { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import config from "../../utils/config";
 import api from "../../utils/helper";
 import { imgUrl } from "../../utils/constant";

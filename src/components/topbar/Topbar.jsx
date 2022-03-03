@@ -1,9 +1,7 @@
 import style from "./topbar.module.scss";
 import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import { Link, useHistory } from "react-router-dom";
-import { useContext } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import config from "../../utils/config";
+import { useSelector } from "react-redux";
 import { imgUrl } from "../../utils/constant";
 
 export default function Topbar() {
