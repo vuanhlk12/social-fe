@@ -9,6 +9,9 @@ import axios from "axios";
 import { io } from "socket.io-client";
 import api from "../../utils/helper";
 import config from "utils/config";
+import TextField from "@material-ui/core/TextField";
+import { Controller, FormProvider, useForm } from "react-hook-form";
+import { Button } from "@material-ui/core";
 
 export default function Messenger() {
   const [conversations, setConversations] = useState([]);
@@ -21,6 +24,10 @@ export default function Messenger() {
 
   const user = useSelector((state) => state?.auth?.user);
   const scrollRef = useRef();
+
+  const { handleSubmit, control, reset } = useForm({
+    defaultValues: {},
+  });
 
   useEffect(() => {
     socket.current = io(config.SOCKET_URL);
@@ -78,8 +85,8 @@ export default function Messenger() {
     !!currentChat?._id && getMessages();
   }, [currentChat]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (value) => {
+    const newMessage = value?.newMessage;
     const message = {
       sender: user._id,
       text: newMessage,
@@ -102,6 +109,7 @@ export default function Messenger() {
         url: "/messages",
         data: message,
       });
+      reset({ newMessage: "" });
       setMessages([...messages, res.data]);
       setNewMessage("");
     } catch (err) {
@@ -141,19 +149,36 @@ export default function Messenger() {
                     </div>
                   ))}
                 </div>
-                <div className={style.chatBoxBottom}>
-                  <textarea
-                    className={style.chatMessageInput}
-                    placeholder="write something..."
-                    onChange={(e) => setNewMessage(e.target.value)}
-                    value={newMessage}
-                  ></textarea>
-                  <button
-                    className={style.chatSubmitButton}
-                    onClick={handleSubmit}
+                <div>
+                  <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className={style.chatBoxBottom}
                   >
-                    Send
-                  </button>
+                    <Controller
+                      render={({
+                        field: { value, onChange },
+                        fieldState: { error },
+                      }) => (
+                        <TextField
+                          style={{ width: "100%" }}
+                          placeholder="write something..."
+                          label="Chat"
+                          variant="outlined"
+                          value={value}
+                          onChange={(e) => onChange(e.target.value)}
+                          error={!!error}
+                          // helperText={error?.message}
+                        />
+                      )}
+                      name="newMessage"
+                      control={control}
+                      rules={{ required: "Đây là trường bắt buộc" }}
+                    />
+
+                    <Button variant="contained" color="primary" type="submit">
+                      Send
+                    </Button>
+                  </form>
                 </div>
               </>
             ) : (

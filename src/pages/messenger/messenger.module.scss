@@ -35,6 +35,7 @@
   margin-top: 5px;
   display: flex;
   align-items: center;
+  gap: 8px;
   justify-content: space-between;
 }
 
@@ -82,11 +83,11 @@
     display: none;
   }
 
-  .chatBox{
+  .chatBox {
     flex: 10;
   }
 
-  .chatOnline{
+  .chatOnline {
     flex: 1px;
   }
 }
