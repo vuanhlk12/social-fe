@@ -18,7 +18,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
+export const analytics = getAnalytics(firebaseApp);
 
 // Get a reference to the storage service, which is used to create references in your storage bucket
 export const storage = getStorage(firebaseApp);
