@@ -42,12 +42,9 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    !isCurrentUser && fetchUser();
+    if (isCurrentUser) setUser(currentUser);
+    else fetchUser();
   }, [username]);
-
-  useEffect(() => {
-    isCurrentUser && setUser(currentUser);
-  }, [currentUser]);
 
   return (
     <>
