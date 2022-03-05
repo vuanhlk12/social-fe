@@ -9,7 +9,7 @@ export default function Login() {
   const history = useHistory();
   const email = useRef();
   const password = useRef();
-  const isFetching = useSelector((state) => state?.auth?.isFetching);
+  const isFetching = false;
   const dispatch = useDispatch();
 
   const handleClick = async (e) => {

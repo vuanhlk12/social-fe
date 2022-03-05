@@ -14,7 +14,6 @@ import Messenger from "./pages/messenger/Messenger";
 const ProtectedRoute = (props) => {
   const user = useSelector((state) => state?.auth?.user);
   if (!user) {
-    localStorage.clear();
     return <Redirect to="/login" />;
   }
   return <Route {...props} />;
@@ -29,7 +28,6 @@ const CheckSignedRoute = (props) => {
 };
 
 const App = () => {
-  const user = useSelector((state) => state?.auth?.user);
   return (
     <Router>
       <Switch>

@@ -9,7 +9,7 @@ import { imgUrl } from "../../utils/constant";
 import { handleUpload } from "../../utils/common";
 import { getUser, updateUser } from "../../utils/action";
 import { useDispatch, useSelector } from "react-redux";
-import { authActionType } from "../../authReducer/AuthActions";
+import { authActionType } from "../../authReducer/AuthReducer";
 
 export default function Profile() {
   const params = useParams();

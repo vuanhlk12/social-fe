@@ -1,11 +1,15 @@
 import style from "./topbar.module.scss";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 import { Link, useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { imgUrl } from "../../utils/constant";
+import { IconButton } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { authActionType } from "authReducer/AuthReducer";
 
 export default function Topbar() {
   const user = useSelector((state) => state?.auth?.user);
+  const dispatch = useDispatch();
   const history = useHistory();
   if (!user) return <></>;
 
@@ -54,6 +58,9 @@ export default function Topbar() {
             className={style.topbarImg}
           />
         </Link>
+        <IconButton onClick={() => dispatch({ type: authActionType.LOGOUT })}>
+          <LogoutIcon sx={{ color: "#fff" }} />
+        </IconButton>
       </div>
     </div>
   );

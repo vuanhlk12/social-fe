@@ -28,7 +28,7 @@ export default function Rightbar({ user }) {
         });
         setFriends(friendList.data);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     };
     !!user?._id && getFriends();

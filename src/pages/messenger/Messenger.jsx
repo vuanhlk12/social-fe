@@ -10,7 +10,7 @@ import { io } from "socket.io-client";
 import api from "../../utils/helper";
 import config from "utils/config";
 import TextField from "@mui/material/TextField";
-import { Controller, FormProvider, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Button } from "@mui/material";
 
 export default function Messenger() {
@@ -64,7 +64,7 @@ export default function Messenger() {
         });
         setConversations(res.data);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     };
     getConversations();
@@ -79,7 +79,7 @@ export default function Messenger() {
         });
         setMessages(res.data);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     };
     !!currentChat?._id && getMessages();
@@ -113,7 +113,7 @@ export default function Messenger() {
       setMessages([...messages, res.data]);
       setNewMessage("");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

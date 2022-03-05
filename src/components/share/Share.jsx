@@ -8,7 +8,6 @@ import {
 } from "@mui/icons-material";
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import config from "../../utils/config";
 import api from "../../utils/helper";
 import { imgUrl } from "../../utils/constant";
 import { handleUpload } from "../../utils/common";
@@ -16,12 +15,14 @@ import { Button } from "@mui/material";
 
 export default function Share() {
   const user = useSelector((state) => state?.auth?.user);
-  const PF = config.PUBLIC_FOLDER;
   const desc = useRef();
   const [file, setFile] = useState(null);
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    if (!desc.current.value && !file) return;
+
     const newPost = {
       userId: user._id,
       desc: desc.current.value,
@@ -47,7 +48,7 @@ export default function Share() {
         <div className={style.shareTo}>
           <img
             className={style.shareProfileImg}
-            src={user.profilePicture ? user.profilePicture : imgUrl.noAvtUrl}
+            src={user.profilePicture || imgUrl.noAvtUrl}
             alt=""
           />
           <input

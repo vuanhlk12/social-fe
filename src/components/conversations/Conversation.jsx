@@ -20,7 +20,7 @@ export default function Conversation({ conversation, currentUser }) {
         });
         setUser(res.data);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     };
     getUser();

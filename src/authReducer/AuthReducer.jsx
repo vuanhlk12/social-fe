@@ -1,5 +1,14 @@
 import { produce } from "immer";
-import { authActionType } from "./AuthActions";
+
+export const authActionType = {
+  LOGIN_START: "LOGIN_START",
+  LOGIN_SUCCESS: "LOGIN_SUCCESS",
+  LOGIN_FAILURE: "LOGIN_FAILURE",
+  FOLLOW: "FOLLOW",
+  UNFOLLOW: "UNFOLLOW",
+  UPDATE_USER: "UPDATE_USER",
+  LOGOUT: "LOGOUT",
+};
 
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
@@ -40,11 +49,16 @@ const authReducer = (state = initialState, action) => {
     case authActionType.UPDATE_USER:
       return produce(state, (draft) => {
         const newUserData = { ...draft.user, ...action.payload };
-        localStorage.setItem("user", JSON.stringify(newUserData));
+        localStorage.setItem("user", JSON.stringify({ newUserData }));
         return produce(state, (draft) => {
           draft.user = newUserData;
           draft.isFetching = false;
         });
+      });
+    case authActionType.LOGOUT:
+      return produce(state, (draft) => {
+        localStorage.clear();
+        draft.user = null;
       });
     default:
       return state;

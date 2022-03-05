@@ -1,5 +1,5 @@
 import api from "./utils/helper";
-import { authActionType } from "./authReducer/AuthActions";
+import { authActionType } from "./authReducer/AuthReducer";
 
 export const loginCall = async (userCredential, dispatch) => {
   dispatch({ type: authActionType.LOGIN_START });
