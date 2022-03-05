@@ -5,13 +5,14 @@ import {
   Room,
   EmojiEmotions,
   Cancel,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import config from "../../utils/config";
 import api from "../../utils/helper";
 import { imgUrl } from "../../utils/constant";
 import { handleUpload } from "../../utils/common";
+import { Button } from "@mui/material";
 
 export default function Share() {
   const user = useSelector((state) => state?.auth?.user);
@@ -98,9 +99,14 @@ export default function Share() {
               <span className={style.shareOptionText}>Feelings</span>
             </div>
           </div>
-          <button className={style.shareButton} type="submit">
+          <Button
+            variant="contained"
+            color="green"
+            type="submit"
+            className={style.shareButton}
+          >
             Share
-          </button>
+          </Button>
         </form>
       </div>
     </div>

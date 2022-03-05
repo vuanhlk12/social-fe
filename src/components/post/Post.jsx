@@ -1,5 +1,5 @@
 import style from "./post.module.scss";
-import { MoreVert } from "@material-ui/icons";
+import { MoreVert } from "@mui/icons-material";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js";

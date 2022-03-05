@@ -9,9 +9,9 @@ import axios from "axios";
 import { io } from "socket.io-client";
 import api from "../../utils/helper";
 import config from "utils/config";
-import TextField from "@material-ui/core/TextField";
+import TextField from "@mui/material/TextField";
 import { Controller, FormProvider, useForm } from "react-hook-form";
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
 
 export default function Messenger() {
   const [conversations, setConversations] = useState([]);

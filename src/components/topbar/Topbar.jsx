@@ -1,5 +1,5 @@
 import style from "./topbar.module.scss";
-import { Search, Person, Chat, Notifications } from "@material-ui/icons";
+import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { imgUrl } from "../../utils/constant";

@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Add, Remove } from "@material-ui/icons";
+import { Add, Remove } from "@mui/icons-material";
 import api from "../../utils/helper";
 import config from "../../utils/config";
 import { imgUrl } from "../../utils/constant";

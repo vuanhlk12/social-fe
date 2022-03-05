@@ -2,7 +2,7 @@ import { useRef } from "react";
 import style from "./login.module.scss";
 import { loginCall } from "../../apiCalls";
 import { useSelector, useDispatch } from "react-redux";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
 export default function Login() {
