@@ -1,9 +1,9 @@
 const config = import.meta.env.PROD
   ? {
-      URL: "https://social-be-vuanh.herokuapp.com/",
+      URL: "https://web-vuanhlk12.cloud.okteto.net/",
       PUBLIC_FOLDER:
         "https://firebasestorage.googleapis.com/v0/b/social-img-17ab9.appspot.com/o/images/",
-      SOCKET_URL: "wss://social-socket-vuanh.herokuapp.com",
+      SOCKET_URL: "wss://socket-vuanhlk12.cloud.okteto.net/",
     }
   : {
       URL: "http://localhost:8800/",
